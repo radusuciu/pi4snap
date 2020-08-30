@@ -1,0 +1,14 @@
+---
+version: '2'
+services:
+  snapserver:
+    image: radusuciu/pisnapserver
+    ports:
+      - "1704:1704"
+      - "1705:1705"
+      - "1780:1780"
+    volumes:
+      - ./snapweb/page/:/www/
+      - ./snapserver.conf:/etc/snapserver.conf
+    devices:
+      - /dev/snd:/dev/snd
