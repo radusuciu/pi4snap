@@ -29,7 +29,7 @@ RUN wget https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.
 RUN cmake -S . -B build -DBOOST_ROOT=boost_1_74_0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_FLAGS="$CXXFLAGS -Werror -Wall -Wextra -pedantic -Wno-unused-function"
 RUN cmake --build build
 RUN fakeroot make -f debian/rules CMAKEFLAGS="-DBOOST_ROOT=boost_1_74_0 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache" binary
-RUN dpkg -i /snapserver_0.21.0-1_amd64.deb
+RUN dpkg -i /snapserver_0.21.0-1_arm64.deb
 
 EXPOSE 1704 1705 1780
 ENTRYPOINT ["/bin/bash","-c","/usr/bin/snapserver"]
