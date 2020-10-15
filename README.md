@@ -1,6 +1,6 @@
 # Pi4snap
 
-This repository shows how to setup a Snapcast server on a Raspberry Pi 4B running Ubuntu Server 20.04 and makes use of the great [snapcast](https://github.com/badaix/snapcast) and [snapweb](https://github.com/badaix/snapweb) projects. The image it uses is built from source, and there is a LOT of room for optimization. If you're interested in doing this, I recently came across [a project by @Saiyato](https://github.com/Saiyato/snapserver_docker) that seems promising and more optimized!
+This repository contains code for my [wireless vinyl setup](https://radusuciu.com/posts/wireless-vinyl/) using a [Snapcast](https://github.com/badaix/snapcast) server on a Raspberry Pi 4B running Ubuntu Server 20.04. The image it uses is built from source, and there is a LOT of room for optimization. If you're interested in doing this more generally, I recently came across [a project by @Saiyato](https://github.com/Saiyato/snapserver_docker) that seems promising and more optimized!
 
 ## Installation instructions for Rasberry Pi 4B running Ubuntu Server 20.04
 
@@ -20,5 +20,6 @@ curl -sSL https://get.docker.com | sh
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && sudo python3 get-pip.py && rm get-pip.py
 sudo pip3 install docker-compose
 
+git clone git@github.com:radusuciu/pi4snap.git && cd pi4snap
 sudo docker-compose up -d
 ```
