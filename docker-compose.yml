@@ -1,8 +1,10 @@
----
-version: '2'
+version: '3'
+
 services:
   snapserver:
-    image: radusuciu/pi4snap
+    build:
+      context: .
+      target: snapserver
     ports:
       - "1704:1704"
       - "1705:1705"
@@ -10,6 +12,9 @@ services:
     volumes:
       - ./snapserver.conf:/etc/snapserver.conf
       - ./snapweb/snapweb-0.1.0/dist:/usr/share/snapserver/snapweb
+    environment:
+      SPOTIFY_USERNAME: ${SPOTIFY_USERNAME:-}
+      SPOTIFY_PASSWORD: ${SPOTIFY_PASSWORD:-}
     devices:
       - /dev/snd:/dev/snd
     restart: always
