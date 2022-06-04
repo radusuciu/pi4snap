@@ -51,11 +51,11 @@ RUN wget https://boostorg.jfrog.io/artifactory/main/release/${BOOST_MAJOR}.${BOO
 RUN cmake -S . -B build -DBOOST_ROOT=boost_${BOOST_MAJOR}_${BOOST_MINOR}_0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_FLAGS="$CXXFLAGS -Werror -Wall -Wextra -pedantic -Wno-unused-function"
 RUN cmake --build build --parallel 4
 RUN fakeroot make -j 4 -f debian/rules CMAKEFLAGS="-DBOOST_ROOT=boost_${BOOST_MAJOR}_${BOOST_MINOR}_0 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache" binary
-RUN dpkg -i /snapserver_${SNAPCAST_VERSION}-1_arm64.deb
+RUN dpkg -i /snapserver_${SNAPCAST_VERSION}-*.deb
 
-RUN wget https://github.com/badaix/snapweb/archive/refs/tags/v${SNAPWEB_VERSION}}.zip \
-    && unzip snapweb-${SNAPWEB_VERSION}}.zip \
-    && mv snapweb-${SNAPWEB_VERSION}} snapweb
+RUN wget https://github.com/badaix/snapweb/archive/refs/tags/v${SNAPWEB_VERSION}.zip \
+    && unzip v${SNAPWEB_VERSION}.zip \
+    && mv snapweb-${SNAPWEB_VERSION} snapweb
 
 FROM ubuntu:20.04 AS snapserver
 ARG DEBIAN_FRONTEND=noninteractive
@@ -79,7 +79,7 @@ RUN apt-get update \
 WORKDIR /snapcast
 
 COPY --from=librespot /usr/local/cargo/bin/librespot /usr/local/bin/
-COPY --from=snapcast-build /usr/local/bin/snapserver /usr/local/bin/
+COPY --from=snapcast-build /snapcast/bin/snapserver /usr/local/bin/
 COPY --from=snapcast-build /etc/snapserver.conf /etc/
 COPY --from=snapcast-build /snapcast/snapweb /usr/share/snapserver/snapweb
 COPY run.sh .
