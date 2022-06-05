@@ -1,4 +1,4 @@
-FROM rust:latest as librespot
+FROM rust:1.61-slim-buster as librespot
 
 ARG LIBRESPOT_VERSION=0.4.1
 
