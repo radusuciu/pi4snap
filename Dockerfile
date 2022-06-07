@@ -12,7 +12,7 @@ RUN apt-get update \
     && apt-get clean && rm -fR /var/lib/apt/lists
 RUN cargo install librespot --version "${LIBRESPOT_VERSION}" --features with-dns-sd
 
-FROM ubuntu:20.04 AS snapcast-build
+FROM debian:bullseye-slim AS snapcast-build
 ARG DEBIAN_FRONTEND=noninteractive
 ARG SNAPCAST_VERSION=0.26.0
 ARG BOOST_MAJOR=1
@@ -64,7 +64,7 @@ WORKDIR /build/snapweb
 RUN npm install --save @types/wicg-mediasession@1.1.0
 RUN make
 
-FROM ubuntu:20.04 AS snapserver
+FROM debian:bullseye-slim AS snapserver
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 RUN apt-get update \
