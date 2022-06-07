@@ -5,6 +5,7 @@ services:
     build:
       context: .
       target: snapserver
+    image: radusuciu/pi4snap:librespot
     ports:
       - "1704:1704"
       - "1705:1705"
