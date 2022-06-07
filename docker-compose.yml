@@ -11,7 +11,7 @@ services:
       - "1705:1705"
       - "1780:1780"
     volumes:
-      - ./snapserver.conf:/etc/snapserver.conf
+      - ./snapserver.conf.template:/etc/snapserver.conf/template
     environment:
       SPOTIFY_USERNAME: ${SPOTIFY_USERNAME:-}
       SPOTIFY_PASSWORD: ${SPOTIFY_PASSWORD:-}

@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 
-sed -i "s/<SPOTIFY_USERNAME>/${SPOTIFY_USERNAME}/" /etc/snapserver.conf
-sed -i "s/<SPOTIFY_PASSOWRD>/${SPOTIFY_PASSOWRD}/" /etc/snapserver.conf
-
+sed "s/<SPOTIFY_USERNAME>/${SPOTIFY_USERNAME}/" /etc/snapserver.conf.template | sed "s/<SPOTIFY_PASSWORD>/${SPOTIFY_PASSWORD}/" > /etc/snapserver.conf
 exec snapserver
