@@ -47,11 +47,11 @@ WORKDIR /snapcast
 RUN wget https://boostorg.jfrog.io/artifactory/main/release/${BOOST_MAJOR}.${BOOST_MINOR}.0/source/boost_${BOOST_MAJOR}_${BOOST_MINOR}_0.tar.bz2 \
     && tar xjf boost_${BOOST_MAJOR}_${BOOST_MINOR}_0.tar.bz2
 RUN cmake -S . -B build -DBOOST_ROOT=boost_${BOOST_MAJOR}_${BOOST_MINOR}_0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_FLAGS="$CXXFLAGS -Werror -Wall -Wextra -pedantic -Wno-unused-function"
-RUN cmake --build build --parallel 10
+RUN cmake --build build
 
 FROM node:18.2-bullseye-slim as snapweb-build
 ARG DEBIAN_FRONTEND=noninteractive
-ARG SNAPWEB_VERSION=0.2.0
+ARG SNAPWEB_VERSION=0.4.0
 RUN apt-get update \
     && apt-get install -y \
         build-essential \
